@@ -1,4 +1,5 @@
 var express = require('express')
+var stylus = require('stylus')
 var jade = require('jade')
 
 var server = express()
@@ -9,6 +10,11 @@ server.use(express.bodyParser())
 server.set('view engine', 'jade')
 server.set('views', 'views')
 server.engine('jade', jade.__express)
+
+server.use(stylus.middleware({
+  src: __dirname + '/views',
+  dest: 'site',
+  debug: true}))
 
 server.get('/hello', function(req, res) {
   res.write('hello world')
