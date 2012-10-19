@@ -14,7 +14,7 @@ server.engine('jade', jade.__express)
 server.use(stylus.middleware({
   src: __dirname + '/views',
   dest: 'site',
-  debug: true}))
+  debug: false}))
 
 server.get('/hello', function(req, res) {
   res.write('hello world')

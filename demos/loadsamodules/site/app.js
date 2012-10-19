@@ -10,7 +10,7 @@ $(function() {
         type: 'POST',
         data: { name: name, shoutout: shoutout },
         success: function(html) {
-          $('#shoutouts').html(html)
+          $('#shoutouts').prepend(html)
         }
       })
       $shoutout.val('')

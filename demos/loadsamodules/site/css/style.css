@@ -1,7 +1,7 @@
 .shoutout .name {
   float: left;
   margin-right: 10px;
-  text-decoration: bold;
+  font-weight: bold;
 }
 .shoutout .shoutout {
   float: left;
