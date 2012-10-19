@@ -4,6 +4,8 @@ var jade = require('jade')
 var server = express()
 
 server.use(express.static(__dirname + '/site'))
+server.use(express.bodyParser())
+
 server.set('view engine', 'jade')
 server.set('views', 'views')
 server.engine('jade', jade.__express)
@@ -13,8 +15,19 @@ server.get('/hello', function(req, res) {
   res.end()
 })
 
+var items = []
+
 server.get('/', function(req, res) {
-  res.render('index')
+  res.render('index', {
+    items: items
+  })
+})
+
+server.post('/', function(req, res) {
+  items.unshift(req.body)
+  res.render('shoutouts', {
+    items: items
+  })
 })
 
 server.listen(process.env.PORT || 8080)

@@ -13,4 +13,7 @@ block content
       label Shout-out
       input(type='text', name='shoutout')
     .span4
-      input.btn-success.btn-large(type='submit', value='submit')
+      input.btn-success.btn-large#submit(type='submit', value='submit')
+
+  #shoutouts.row
+    include shoutouts

@@ -44,6 +44,8 @@ class ManualClient
   navigate: (url, done) =>
     @page = @base + url
     @browser = new Browser({debug: debug})
+    @browser.on 'error', (err) ->
+      console.log(err.toString())
     @browser.visit @page, done
 
   can_see: (selector) =>
@@ -54,14 +56,15 @@ class ManualClient
     @browser.fill(name, value)
 
   submit_shoutout: (done) =>
-    @browser.pressButton('submit', done)
+    submit = @browser.querySelector('#submit')
+    @browser.fire('click', submit, done)
 
   page_title: =>
     return @browser.querySelector('h1').textContent
 
   value_of: (inputSelector) =>
     item = @browser.querySelector("input[name='#{inputSelector}']")
-    return item.getAttribute('value')
+    return item.getAttribute('value') || ''
 
   find_shoutout: (index) =>
     shoutouts = @browser.querySelectorAll('.shoutout')
