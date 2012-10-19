@@ -31,9 +31,11 @@ server.get('/', function(req, res) {
 
 server.post('/', function(req, res) {
   items.unshift(req.body)
-  res.render('shoutouts', {
-    items: items
+  res.render('shoutout', {
+    item: req.body
   })
 })
+
+var listeners = [] 
 
 server.listen(process.env.PORT || 8080)

@@ -16,4 +16,5 @@ block content
       input.btn-success.btn-large#submit(type='submit', value='submit')
 
   #shoutouts.row
-    include shoutouts
+    each item in items
+      include shoutout

@@ -1,13 +1,17 @@
 $(function() {
   var $name = $("input[name='name']") 
   var $shoutout = $("input[name='shoutout']")
-
   $("#submit").click(function() {
       var name = $name.val()
       var shoutout = $shoutout.val()
 
-      $('#shoutouts').load('/', {
-         name: name, shoutout: shoutout 
+      $.ajax({
+        url: '/',
+        type: 'POST',
+        data: { name: name, shoutout: shoutout },
+        success: function(html) {
+          $('#shoutouts').html(html)
+        }
       })
       $shoutout.val('')
   })
