@@ -1,7 +1,6 @@
 debug = !!process.env.DEBUG
 Browser = require 'zombie'
 fork = require('child_process').fork
-_ = require 'underscore'
 http = require 'http'
 
 class ManualContext
