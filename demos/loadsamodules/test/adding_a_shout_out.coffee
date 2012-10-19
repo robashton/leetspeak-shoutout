@@ -19,7 +19,7 @@ Scenario "Adding a shout-out", ->
   Then "the shout-out should appear on the page", ->
     shoutout = client.find_shoutout(0)
     shoutout.querySelector('.name').textContent.should.equal('Rob')
-    shoutout.querySelector('.shoutout').textContent.should.equal('ERRMERRGHEEERD')
+    shoutout.querySelector('.content').textContent.should.equal('ERRMERRGHEEERD')
 
   And "the shout-out text should be cleared", ->
     client.value_of('shoutout').should.equal('')
