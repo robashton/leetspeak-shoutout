@@ -17,4 +17,4 @@ server.get('/', function(req, res) {
   res.render('index')
 })
 
-server.listen(8080)
+server.listen(process.env.PORT || 8080)

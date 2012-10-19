@@ -20,7 +20,13 @@ class ManualContext
     })
     @wait_for_server(done)
 
-  create_client: (cb) =>
+  wait_for_server: (done) =>
+    req = http.get "http://localhost:" + @port, =>
+      done()
+    req.on 'error', =>
+      @wait_for_server(done)
+
+  create_client: =>
     return new ManualClient(this, @port)
 
   dispose: =>
@@ -39,6 +45,15 @@ class ManualClient
     @page = @base + url
     @browser = new Browser({debug: debug})
     @browser.visit @page, done
+
+  can_see: (selector) =>
+    element = @browser.querySelector(selector)
+    return !!element
+
+  page_title: =>
+    return @browser.querySelector('h1').textContent
+
+
 
   load_index: (cb) =>
     @navigate '/', cb
