@@ -50,10 +50,22 @@ class ManualClient
     element = @browser.querySelector(selector)
     return !!element
 
+  fill: (name, value) =>
+    @browser.fill(name, value)
+
+  submit_shoutout: (done) =>
+    @browser.pressButton('submit', done)
+
   page_title: =>
     return @browser.querySelector('h1').textContent
 
+  value_of: (inputSelector) =>
+    item = @browser.querySelector("input[name='#{inputSelector}']")
+    return item.getAttribute('value')
 
+  find_shoutout: (index) =>
+    shoutouts = @browser.querySelectorAll('.shoutout')
+    return shoutouts[index]
 
   load_index: (cb) =>
     @navigate '/', cb
